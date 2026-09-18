@@ -1,0 +1,67 @@
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+
+        <!-- Logo -->
+        <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="{% url 'home' %}">
+            <span class="brand-badge">
+                <i class="bi bi-flower3"></i>
+            </span>
+            <span>شجرة الدر</span>
+        </a>
+
+        <!-- Mobile Button -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="فتح القائمة">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">
+                        الرئيسية
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'menu-list' %}">
+                        القائمة
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'about' %}">
+                        عن المطعم
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'gallery' %}">
+                        معرض الصور
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'reserve-table' %}">
+                        حجز طاولة
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contact' %}">
+                        تواصل معنا
+                    </a>
+                </li>
+
+                <li class="nav-item mt-2 mt-lg-0">
+                    <a class="btn btn-gold" href="{% url 'place-order' %}">
+                        اطلب الآن
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>

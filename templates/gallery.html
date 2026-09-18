@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <span class="hero-pill">Our Gallery</span>
+            <h1 class="display-5 fw-bold mt-3">لمحة عن الأجواء، الذوق، والتميز</h1>
+            <p class="text-muted">من الأطباق المميزة إلى أجواء الطعام الراقية، كل التفاصيل صُمّمت لتترك انطباعًا لا
+                يُنسى.</p>
+        </div>
+
+        <div class="row g-4">
+            {% for image in images %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden h-100 gallery-card">
+                    <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid gallery-image">
+                    <div class="card-body">
+                        <h5 class="fw-bold">{{ image.title }}</h5>
+                        <p class="text-muted mb-0">{{ image.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <div class="col-12 text-center text-muted">سيظهر محتوى المعرض هنا قريبًا.</div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

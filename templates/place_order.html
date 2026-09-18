@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 form-shell">
+                <div class="text-center mb-4">
+                    <span class="hero-pill">Order in Minutes</span>
+                    <h1 class="display-6 fw-bold mt-3">Create your order</h1>
+                    <p class="text-muted">Ready for your next favorite bite?</p>
+                </div>
+
+                <form method="post" novalidate>
+                    {% csrf_token %}
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="{{ order_form.customer_name.id_for_label }}" class="form-label">Customer
+                                Name</label>
+                            {{ order_form.customer_name }}
+                            {% if order_form.customer_name.errors %}
+                            <div class="text-danger small mt-1">{{ order_form.customer_name.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="{{ order_form.phone_number.id_for_label }}" class="form-label">Phone
+                                Number</label>
+                            {{ order_form.phone_number }}
+                            {% if order_form.phone_number.errors %}
+                            <div class="text-danger small mt-1">{{ order_form.phone_number.errors.0 }}</div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <div class="mb-3">
+                        <label for="{{ order_item_form.menu_item.id_for_label }}" class="form-label">Select Menu
+                            Item</label>
+                        {{ order_item_form.menu_item }}
+                        {% if order_item_form.menu_item.errors %}
+                        <div class="text-danger small mt-1">{{ order_item_form.menu_item.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="{{ order_item_form.quantity.id_for_label }}" class="form-label">Quantity</label>
+                        {{ order_item_form.quantity }}
+                        {% if order_item_form.quantity.errors %}
+                        <div class="text-danger small mt-1">{{ order_item_form.quantity.errors.0 }}</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                        <button type="submit" class="btn btn-gold btn-lg">Submit Order</button>
+                        <a href="{% url 'menu-list' %}" class="btn btn-outline-dark btn-lg">Back to Menu</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

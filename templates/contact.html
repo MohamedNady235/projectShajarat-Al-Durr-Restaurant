@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row g-5">
+        <div class="col-lg-5">
+            <span class="hero-pill">Contact Us</span>
+            <h1 class="display-5 fw-bold mt-3 mb-4">نحن على أتم الاستعداد لتلبية احتياجاتك.</h1>
+            <p class="text-muted">سواء كنت تبحث عن حجز طاولة، أو ترغب في طلب خاص، أو ببساطة تريد التواصل معنا، سنكون
+                سعداء بالرد في الوقت المناسب.</p>
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
+                <h5 class="fw-bold mb-3">Contact Information</h5>
+                <p class="mb-2"><i class="bi bi-geo-alt-fill text-success me-2"></i>Beni Suef, Egypt</p>
+                <p class="mb-2"><i class="bi bi-telephone-fill text-success me-2"></i>010xxxxxxxx</p>
+                <p class="mb-2"><i class="bi bi-envelope-fill text-success me-2"></i>info@shajarataldurr.com</p>
+                <p class="mb-0"><i class="bi bi-clock-fill text-success me-2"></i>Open daily • 10:00 AM – 12:00 AM</p>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 mt-4">
+                <h5 class="fw-bold mb-3">Follow Us</h5>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="https://facebook.com" class="btn btn-outline-dark" target="_blank" rel="noreferrer"><i
+                            class="bi bi-facebook"></i></a>
+                    <a href="https://instagram.com" class="btn btn-outline-dark" target="_blank" rel="noreferrer"><i
+                            class="bi bi-instagram"></i></a>
+                    <a href="https://wa.me/2010xxxxxxxx" class="btn btn-outline-dark" target="_blank"
+                        rel="noreferrer"><i class="bi bi-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <div class="card border-0 shadow-lg rounded-4 p-4 p-md-5 form-shell mb-4">
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Name</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            {{ form.email }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Phone</label>
+                            {{ form.phone }}
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label">Subject</label>
+                            {{ form.subject }}
+                        </div>
+                        <div class="col-12">
+                            <label class="form-label">Message</label>
+                            {{ form.message }}
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-gold btn-lg mt-4">Send Message</button>
+                </form>
+            </div>
+
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden contact-visual">
+                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1400&q=80"
+                    alt="Restaurant building exterior" class="img-fluid w-100">
+                <div class="card-body">
+                    <h5 class="fw-bold">Visit Us</h5>
+                    <p class="text-muted mb-0">Enjoy a memorable experience in our elegant dining space and delightful
+                        atmosphere.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

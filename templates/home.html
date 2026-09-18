@@ -1,0 +1,490 @@
+{% extends 'base.html' %}
+
+{% block title %}مطعم شجرة الدر{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center g-5 py-5">
+
+            <div class="col-lg-7 hero-copy">
+
+                <span class="hero-pill">
+                    أهلاً بكم في مطعم شجرة الدر
+                </span>
+
+                <h1 class="display-3 fw-bold mb-3">
+                    نكهات فاخرة، ضيافة دافئة، وتجربة طعام لا تُنسى.
+                </h1>
+
+                <p class="lead text-white-50 mb-4">
+                    استمتع بأشهى أطباقنا المُحضّرة بشغف وأناقة،
+                    مع لمسة من الأصالة والتقاليد في كل لقمة.
+                </p>
+
+                <div class="d-flex flex-wrap gap-3">
+
+                    <a href="{% url 'menu-list' %}" class="btn btn-outline-light btn-lg px-4 fw-semibold">
+                        عرض القائمة
+                    </a>
+
+                    <a href="{% url 'reserve-table' %}" class="btn btn-outline-light btn-lg px-4">
+                        احجز طاولة
+                    </a>
+
+                    <a href="{% url 'place-order' %}" class="btn btn-outline-light btn-lg px-4">
+                        اطلب الآن
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-lg-5">
+                <div class="hero-card">
+                    <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80"
+                        alt="مطعم شجرة الدر">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Features -->
+<section class="container py-5">
+    <div class="row g-4">
+
+        <div class="col-md-6 col-lg-3">
+            <div class="info-card card h-100 border-0 shadow-sm rounded-4 p-4">
+
+                <div class="icon-box">
+                    <i class="bi bi-award"></i>
+                </div>
+
+                <h5 class="fw-semibold mt-3">
+                    جودة استثنائية
+                </h5>
+
+                <p class="text-muted mb-0">
+                    نختار أفضل المكونات بعناية ونقدمها بطريقة راقية
+                    لتستمتع بتجربة طعام مميزة.
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+            <div class="info-card card h-100 border-0 shadow-sm rounded-4 p-4">
+
+                <div class="icon-box">
+                    <i class="bi bi-basket2"></i>
+                </div>
+
+                <h5 class="fw-semibold mt-3">
+                    طازج يوميًا
+                </h5>
+
+                <p class="text-muted mb-0">
+                    نُحضّر أطباقنا يوميًا باستخدام مكونات طازجة
+                    للحفاظ على أفضل مذاق وجودة.
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+            <div class="info-card card h-100 border-0 shadow-sm rounded-4 p-4">
+
+                <div class="icon-box">
+                    <i class="bi bi-truck"></i>
+                </div>
+
+                <h5 class="fw-semibold mt-3">
+                    توصيل سريع
+                </h5>
+
+                <p class="text-muted mb-0">
+                    استمتع بخدمة توصيل سريعة مع الحفاظ على جودة
+                    وطعم كل وجبة.
+                </p>
+
+            </div>
+        </div>
+
+
+        <div class="col-md-6 col-lg-3">
+            <div class="info-card card h-100 border-0 shadow-sm rounded-4 p-4">
+
+                <div class="icon-box">
+                    <i class="bi bi-person-badge"></i>
+                </div>
+
+                <h5 class="fw-semibold mt-3">
+                    طهاة محترفون
+                </h5>
+
+                <p class="text-muted mb-0">
+                    فريق من أمهر الطهاة يقدم أشهى الأطباق
+                    ليمنحك تجربة لا تُنسى.
+                </p>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- Featured Meals -->
+<section class="container py-3 pb-5">
+
+    <div class="section-head d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+            <span class="hero-pill">
+                أطباق مميزة
+            </span>
+
+            <h2 class="fw-bold mt-3 mb-0">
+                أطباقنا الشهيرة
+            </h2>
+        </div>
+
+        <a href="{% url 'menu-list' %}" class="btn btn-outline-dark">
+            عرض القائمة كاملة
+        </a>
+
+    </div>
+
+
+    <div class="row g-4">
+
+        {% for item in featured_items %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="menu-card card h-100 border-0 shadow-sm rounded-4 overflow-hidden">
+
+                <div class="menu-image position-relative">
+
+                    {% if item.image %}
+
+                    <img src="{{ item.image.url }}" alt="{{ item.name }}">
+
+                    {% else %}
+
+                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=80"
+                        alt="{{ item.name }}">
+
+                    {% endif %}
+
+
+                    <div class="position-absolute top-0 start-0 p-3 d-flex flex-wrap gap-2">
+
+                        <span class="badge badge-soft">
+                            ⭐ 4.9
+                        </span>
+
+                        {% if item.is_popular %}
+
+                        <span class="badge bg-danger">
+                            🔥 الأكثر طلبًا
+                        </span>
+
+                        {% endif %}
+
+                        <span class="badge bg-success">
+                            🥗 طازج يوميًا
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="card-body p-4">
+
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+
+                        <h5 class="fw-semibold mb-0">
+                            {{ item.name }}
+                        </h5>
+
+                        <span class="price-badge">
+                            {{ item.price }} جنيه
+                        </span>
+
+                    </div>
+
+
+                    <p class="text-muted small mb-3">
+                        {{ item.description|default:"طبق مميز من قائمة مطعمنا." }}
+                    </p>
+
+
+                    <div class="d-flex flex-wrap gap-2 mb-3">
+
+                        <span class="badge bg-light text-dark">
+                            ⭐ {{ item.rating }}
+                        </span>
+
+                        {% if item.has_discount %}
+
+                        <span class="badge bg-success">
+                            خصم {{ item.discount_percentage }}%
+                        </span>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <a href="{% url 'menu-detail' item.id %}" class="btn btn-outline-dark w-100">
+                        عرض التفاصيل
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {% empty %}
+
+        <div class="col-12 text-center text-muted">
+            لا توجد أطباق مميزة متاحة حاليًا.
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- Why Choose Us -->
+<section class="container py-4 pb-5">
+
+    <div class="row g-4 align-items-stretch">
+
+        <div class="col-lg-7">
+
+            <div class="cta-banner h-100">
+
+                <span class="hero-pill">
+                    لماذا تختارنا؟
+                </span>
+
+                <h2 class="fw-bold mt-3 mb-3">
+                    تجربة طعام راقية تجمع بين الأصالة والجودة.
+                </h2>
+
+                <p class="text-muted mb-4">
+                    من المشويات المُحضّرة بعناية إلى النكهات الغنية
+                    والخدمة المميزة، نحرص على أن تكون كل لحظة
+                    تقضيها معنا استثنائية.
+                </p>
+
+                <a href="{% url 'about' %}" class="btn btn-gold btn-lg">
+                    اكتشف المزيد
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-lg-5">
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+
+                <h4 class="fw-bold mb-3">
+                    لماذا يختارنا ضيوفنا؟
+                </h4>
+
+                <ul class="list-unstyled text-muted mb-0">
+
+                    <li class="mb-2">
+                        <i class="bi bi-check2-circle text-success me-2"></i>
+                        أطباق طازجة يوميًا
+                    </li>
+
+                    <li class="mb-2">
+                        <i class="bi bi-check2-circle text-success me-2"></i>
+                        خدمة سريعة واهتمام بكل التفاصيل
+                    </li>
+
+                    <li class="mb-2">
+                        <i class="bi bi-check2-circle text-success me-2"></i>
+                        أجواء راقية ومميزة
+                    </li>
+
+                    <li class="mb-2">
+                        <i class="bi bi-check2-circle text-success me-2"></i>
+                        خدمة توصيل وحجز سهلة
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Gallery -->
+<section class="container py-3 pb-5">
+
+    <div class="section-head d-flex justify-content-between align-items-center mb-4">
+
+        <div>
+
+            <span class="hero-pill">
+                معرض الصور
+            </span>
+
+            <h2 class="fw-bold mt-3 mb-0">
+                لمحة من أجوائنا
+            </h2>
+
+        </div>
+
+        <a href="{% url 'gallery' %}" class="btn btn-outline-dark">
+            عرض المعرض
+        </a>
+
+    </div>
+
+
+    <div class="row g-4">
+
+        {% for image in gallery_images %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden gallery-card">
+
+                <img src="{{ image.image.url }}" alt="{{ image.title }}" class="img-fluid gallery-image">
+
+            </div>
+
+        </div>
+
+
+        {% empty %}
+
+        <div class="col-12 text-center text-muted">
+            ستظهر صور المعرض هنا قريبًا.
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- Testimonials -->
+<section class="container py-4 pb-5">
+
+    <div class="text-center mb-4">
+
+        <span class="hero-pill">
+            آراء عملائنا
+        </span>
+
+        <h2 class="fw-bold mt-3">
+            ماذا يقول ضيوفنا؟
+        </h2>
+
+    </div>
+
+
+    <div class="row g-4">
+
+        {% for review in reviews %}
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+
+                <p class="text-warning mb-2">
+                    ★★★★★
+                </p>
+
+                <p class="text-muted">
+                    "{{ review.review_text }}"
+                </p>
+
+                <div class="fw-bold mt-3">
+                    {{ review.customer_name }}
+                </div>
+
+            </div>
+
+        </div>
+
+
+        {% empty %}
+
+        <div class="col-12 text-center text-muted">
+            ستظهر آراء العملاء هنا قريبًا.
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+<!-- Newsletter -->
+<section class="container pb-5">
+
+    <div class="newsletter-card">
+
+        <div class="row align-items-center g-4">
+
+            <div class="col-lg-8">
+
+                <span class="hero-pill">
+                    ابقَ على اطلاع
+                </span>
+
+                <h3 class="fw-bold mt-3 mb-2">
+                    اشترك في نشرتنا البريدية
+                </h3>
+
+                <p class="text-muted mb-0">
+                    احصل على آخر العروض والقوائم الموسمية
+                    والفعاليات الخاصة.
+                </p>
+
+            </div>
+
+
+            <div class="col-lg-4 text-lg-end">
+
+                <a href="{% url 'contact' %}" class="btn btn-gold">
+                    تواصل معنا
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

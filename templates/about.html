@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<section class="page-hero py-5">
+    <div class="container">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6">
+                <span class="hero-pill">من نحن</span>
+                <h1 class="display-5 fw-bold mt-3 mb-4">مكان يجمّع بين الأصالة، الرفاهية، ومذاق لا يُنسى.</h1>
+                <p class="lead text-muted">في مطعم شجرة الدر، نؤمن أن كل وجبة تمثل لحظة استثنائية. من المكونات الطازجة
+                    إلى اللمسة النهائية في التقديم، نحرص على أن تتجاوز كل زيارة التوقعات.</p>
+                <p class="text-muted">نقدّم أطباقاً تجمع بين المأكولات الشرقية والغربية في أجواء فاخرة، مع اهتمام شديد
+                    بالتفاصيل وخدمة تحمل لمسة من الدفء والاحتراف.</p>
+            </div>
+            <div class="col-lg-6">
+                <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=80"
+                    alt="Restaurant owner and chef" class="img-fluid rounded-4 shadow-lg about-image">
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container py-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                <h4 class="fw-bold">رسالتنا</h4>
+                <p class="text-muted mb-0">إبداع تجارب طعام استثنائية تجمع بين الذوق الراقي والضيافة الهادئة.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                <h4 class="fw-bold">رؤيتنا</h4>
+                <p class="text-muted mb-0">أن نكون وجهة مفضلة للضيوف الباحثين عن الجودة والتميز في كل زيارة.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                <h4 class="fw-bold">لماذا تختارنا</h4>
+                <p class="text-muted mb-0">مكونات طازجة، طهاة خبراء، أجواء أنيقة، وقائمة متنوعة تناسب كل المناسبات.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container pb-5">
+    <div class="text-center mb-4">
+        <span class="hero-pill">Guest Reviews</span>
+        <h2 class="display-6 fw-bold mt-3">آراء عملائنا</h2>
+    </div>
+    <div class="row g-4">
+        {% for review in reviews %}
+        <div class="col-md-6 col-lg-3">
+            <div class="card border-0 shadow-sm rounded-4 p-4 h-100">
+                <div class="d-flex align-items-center gap-3 mb-3">
+                    <div class="rounded-circle bg-light d-flex align-items-center justify-content-center"
+                        style="width:45px;height:45px; font-size:1.2rem;">★</div>
+                    <div>
+                        <h6 class="mb-0 fw-bold">{{ review.customer_name }}</h6>
+                        <small class="text-muted">{{ review.rating }}/5</small>
+                    </div>
+                </div>
+                <p class="text-muted mb-0">“{{ review.review_text }}”</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center text-muted">ستظهر الآراء هنا قريبًا.</div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

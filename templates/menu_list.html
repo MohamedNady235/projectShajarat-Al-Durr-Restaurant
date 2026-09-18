@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section class="menu-hero py-5">
+    <div class="container text-center">
+        <span class="hero-pill">Shajarat Al-Durr Restaurant</span>
+
+        <h1 class="display-4 fw-bold mt-3">
+            Our Delicious Menu
+        </h1>
+
+        <p class="lead text-light mt-3">
+            اكتشف أشهى المأكولات الشرقية والغربية المحضرة يوميًا بأفضل المكونات.
+        </p>
+    </div>
+</section>
+
+<!-- Search & Filter -->
+<section class="py-5 bg-light">
+
+    <div class="container">
+
+        <form method="GET" class="row g-3 justify-content-center">
+
+            <div class="col-lg-5">
+
+                <input type="text" name="q" class="form-control form-control-lg"
+                    placeholder="🔍 Search your favorite meal..." value="{{ search_query }}">
+
+            </div>
+
+            <div class="col-lg-4">
+
+                <select class="form-select form-select-lg" name="category">
+
+                    <option value="">All Categories</option>
+
+                    {% for category in categories %}
+
+                    <option value="{{ category.name }}">
+                        {{ category.name }}
+                    </option>
+
+                    {% endfor %}
+
+                </select>
+
+            </div>
+
+            <div class="col-lg-2 d-grid">
+
+                <button class="btn btn-success btn-lg">
+
+                    Filter
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+<!-- Menu Cards -->
+
+<section class="py-5">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            {% for item in menu_items %}
+
+            <div class="col-lg-4 col-md-6">
+
+                <div class="menu-card">
+
+                    <div class="menu-image">
+
+                        {% if item.image %}
+                        <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                        {% else %}
+                        <img src="رابط الصورة البديلة">
+                        {% endif %}
+
+                        <div class="badge-group">
+                            <span class="badge bg-warning text-dark">
+                                ⭐ 4.9
+                            </span>
+
+                            {% if item.is_popular %}
+                            ...
+                            {% endif %}
+
+                            </span>
+
+                            {% if item.is_popular %}
+
+                            <span class="badge bg-danger">
+
+                                🔥 Popular
+
+                            </span>
+
+                            {% endif %}
+
+                            {% if item.is_featured %}
+
+                            <span class="badge bg-success">
+
+                                🥗 Fresh
+
+                            </span>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                    <div class="menu-content">
+
+                        <h4>
+
+                            {{ item.name }}
+
+                        </h4>
+
+                        <p>
+
+                            {{ item.description|truncatewords:18 }}
+
+                        </p>
+
+                        <div class="price">
+
+                            {{ item.price }} EGP
+
+                        </div>
+
+                        <div class="mt-4 d-flex gap-2">
+
+                            <a href="{% url 'menu-detail' item.id %}" class="btn btn-outline-success w-50">
+
+                                View Details
+
+                            </a>
+
+                            <a href="{% url 'place-order' %}" class="btn btn-success w-50">
+
+                                Order Now
+
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% empty %}
+
+            <div class="col-12">
+
+                <div class="alert alert-warning text-center">
+
+                    No meals found.
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row g-5 align-items-center">
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                {% if menu_item.image %}
+                <img src="{{ menu_item.image.url }}" alt="{{ menu_item.name }}" class="img-fluid w-100"
+                    style="height: 420px; object-fit: cover;">
+                {% else %}
+                <div class="bg-light d-flex align-items-center justify-content-center" style="height: 420px;">
+                    <div class="text-center text-muted">
+                        <i class="bi bi-image fs-1"></i>
+                        <p class="mb-0 mt-2">Image Placeholder</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="d-flex flex-wrap gap-2 mb-3">
+                {% if menu_item.is_popular %}<span class="badge bg-danger">Popular</span>{% endif %}
+                {% if menu_item.is_featured %}<span class="badge bg-warning text-dark">Featured</span>{% endif %}
+                {% if menu_item.has_discount %}<span class="badge bg-success">-{{ menu_item.discount_percentage }}%
+                    Off</span>{% endif %}
+            </div>
+            <h1 class="display-5 fw-bold mb-3">{{ menu_item.name }}</h1>
+            <p class="text-muted lead">{{ menu_item.description|default:"A delicious choice from our menu." }}</p>
+
+            <div class="card border-0 shadow-sm rounded-4 p-4 mb-4">
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <p class="mb-1 text-muted">Price</p>
+                        {% if menu_item.has_discount %}
+                        <div>
+                            <span class="text-decoration-line-through text-muted me-2">${{ menu_item.price }}</span>
+                            <span class="fw-bold">${{ menu_item.discounted_price }}</span>
+                        </div>
+                        {% else %}
+                        <h4 class="fw-bold">${{ menu_item.price }}</h4>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-1 text-muted">Availability</p>
+                        <h4 class="fw-bold">
+                            {% if menu_item.is_available and menu_item.in_stock %}
+                            <span class="text-success">Available</span>
+                            {% else %}
+                            <span class="text-danger">Unavailable</span>
+                            {% endif %}
+                        </h4>
+                    </div>
+                    <div class="col-12">
+                        <p class="mb-1 text-muted">Category</p>
+                        <h5 class="fw-semibold">{{ menu_item.category.name }}</h5>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-1 text-muted">Calories</p>
+                        <h6 class="fw-semibold">{{ menu_item.calories }} kcal</h6>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="mb-1 text-muted">Prep Time</p>
+                        <h6 class="fw-semibold">{{ menu_item.preparation_time }} min</h6>
+                    </div>
+                    <div class="col-12">
+                        <p class="mb-1 text-muted">Ingredients</p>
+                        <p class="mb-0">{{ menu_item.ingredients|default:"Fresh ingredients prepared daily." }}</p>
+                    </div>
+                    <div class="col-12">
+                        <p class="mb-1 text-muted">Rating</p>
+                        <h6 class="fw-semibold">{{ menu_item.rating_stars }} ({{ menu_item.rating }}/5)</h6>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap gap-3">
+                <a href="{% url 'place-order' %}" class="btn btn-gold btn-lg">Order Now</a>
+                <a href="{% url 'menu-list' %}" class="btn btn-outline-dark btn-lg">Back to Menu</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
